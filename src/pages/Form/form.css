@@ -1,0 +1,77 @@
+h4 {
+    color: red;
+}
+
+.form-container {
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.form-container h2 {
+    color: #006994;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bolder;
+}
+
+input,
+select {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+button {
+    background-color: #006994;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #00567d;
+}
+
+@media only screen and (min-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+
+    input,
+    select {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .form-container {
+        width: 80%;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 10px auto;
+    }
+
+    input,
+    select {
+        width: 60%;
+    }
+}

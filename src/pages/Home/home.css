@@ -1,0 +1,139 @@
+.landing-page {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.overview, .search-container {
+    margin-top: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #006994;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.key-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.metric {
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.metric span:first-child {
+    display: block;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.metric span:last-child {
+    display: block;
+    color: #006994;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.search-container{
+    padding: 15px;
+}
+
+.search-bar {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.home-th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.home-th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.charts {
+    margin: 50px auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.chart-card {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+.chart-title {
+    color: #006994;
+    text-align: center;
+}
+
+.chart {
+    margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .chart-card {
+        width: 40%;
+        margin: 20px 1%;
+    }
+
+    .search-bar input {
+        width: 70%;
+    }
+}

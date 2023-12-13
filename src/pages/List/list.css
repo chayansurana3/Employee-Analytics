@@ -1,0 +1,36 @@
+.employee-list-page {
+    padding: 16px;
+}
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.employee-table th,
+.employee-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.employee-table th {
+    background-color: #f2f2f2;
+}
+
+.pagination {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination button {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
