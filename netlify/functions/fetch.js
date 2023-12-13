@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Profile = require('./model');
 const cors = require('cors');
-const corsMiddleware = cors();
+const Profile = require('./model');
 
 exports.handler = async function (event, context) {
   const { httpMethod } = event;
@@ -14,21 +13,23 @@ exports.handler = async function (event, context) {
   }
 
   try {
+    const corsMiddleware = cors(); 
     const corsHandler = corsMiddleware(event, context);
-    if (corsHandler) return corsHandler;
-
+    if (corsHandler && corsHandler.headers) return corsHandler;
+    
     const employees = await Profile.find();
 
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(employees),
     };
   } catch (error) {
     console.error('Error retrieving all employee data:', error);
+
     return {
       statusCode: 500,
       body: `⚠️⚠️⚠️ ALERT!! ERROR IN RETRIEVING ALL EMPLOYEE DATA: ${error}`,

@@ -17,7 +17,7 @@ function Home() {
           const data = await response.json();
           setEmployeeData(data);
         } else {
-          console.error('Error fetching employee data:', response.statusText);
+          console.error('Error fetching employee data:', response.status, response.statusText);
         }
       } catch (error) {
         console.error('Error fetching employee data:', error.message);
