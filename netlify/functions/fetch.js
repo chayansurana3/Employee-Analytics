@@ -3,6 +3,9 @@ const cors = require('cors');
 const Profile = require('./model');
 
 exports.handler = async function (event, context) {
+  const username = process.env.MONGODB_USERNAME;
+  const password = process.env.MONGODB_PASSWORD;
+  mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.3xpjjhd.mongodb.net/`);
   const { httpMethod } = event;
 
   if (httpMethod !== 'GET') {
@@ -13,17 +16,12 @@ exports.handler = async function (event, context) {
   }
 
   try {
-    const corsMiddleware = cors(); 
-    const corsHandler = corsMiddleware(event, context);
-    if (corsHandler && corsHandler.headers) return corsHandler;
-    
     const employees = await Profile.find();
 
     return {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(employees),
     };
