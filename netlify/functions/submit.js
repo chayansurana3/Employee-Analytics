@@ -18,6 +18,7 @@ exports.handler = async function(event, context) {
 
   const data = JSON.parse(body);
   const empId = data.empId;
+  console.log(data.age);
   const existingProfile = await Profile.findOne({ empId });
 
   if (existingProfile) {
