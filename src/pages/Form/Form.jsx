@@ -31,7 +31,7 @@ function Form() {
     }
     
     try {
-      const response = await fetch('http://localhost:3001/submit', {
+      const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

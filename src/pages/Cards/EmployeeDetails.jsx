@@ -14,7 +14,7 @@ function EmployeeDetails() {
 
     if (shouldDelete) {
       try {
-        const response = await fetch(`https://localhost:3001/delete/${empId}`, {
+        const response = await fetch(`/.netlify/functions/delete/${empId}`, {
           method: 'DELETE'
         });
         if (response.ok) {
@@ -37,7 +37,7 @@ function EmployeeDetails() {
     
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/employees/all');
+        const response = await fetch('/.netlify/functions/fetch');
         if (response.ok) {
           const data = await response.json();
           setEmployeeDataList(data);

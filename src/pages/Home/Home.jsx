@@ -12,7 +12,7 @@ function Home() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/employees/all');
+        const response = await fetch('/.netlify/functions/fetch');
         if (response.ok) {
           const data = await response.json();
           setEmployeeData(data);
