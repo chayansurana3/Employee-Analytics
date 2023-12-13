@@ -18,7 +18,6 @@ exports.handler = async function(event, context) {
 
   const data = JSON.parse(body);
   const empId = data.empId;
-  console.log(data.age);
   const existingProfile = await Profile.findOne({ empId });
 
   if (existingProfile) {
@@ -29,7 +28,7 @@ exports.handler = async function(event, context) {
           email: data.email,
           firstName: data.firstname,
           lastName: data.lastname,
-          age: data.age === "NaN" ? 0 : parseInt(data.age),
+          age: data.age === "" ? 0 : parseInt(data.age),
           gender: data.gender,
           position: data.position,
           salary: data.salary,
@@ -55,7 +54,7 @@ exports.handler = async function(event, context) {
       email: data.email,
       firstName: data.firstname,
       lastName: data.lastname,
-      age: data.age === "NaN" ? 0 : parseInt(data.age),
+      age: data.age === "" ? 0 : parseInt(data.age),
       gender: data.gender,
       position: data.position,
       salary: data.salary,
