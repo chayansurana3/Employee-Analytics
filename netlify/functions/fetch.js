@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const cors = require('cors');
 const Profile = require('./model');
 
 exports.handler = async function (event, context) {

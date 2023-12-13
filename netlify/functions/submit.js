@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Profile = require('./model');
 
 exports.handler = async function(event, context) {
+  const username = process.env.MONGODB_USERNAME;
+  const password = process.env.MONGODB_PASSWORD;
+  mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.3xpjjhd.mongodb.net/`);
+  
   const { httpMethod, body } = event;
 
   if (httpMethod !== 'POST') {
