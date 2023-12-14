@@ -203,7 +203,7 @@ function Home() {
           </div>
         </div>
         <div className="charts">
-          <h1>Organisation DataPoints</h1>
+          <h1>Organization DataPoints</h1>
           <div className="chart-card">
             <h2 className="chart-title">Age Distribution</h2>
             <div className="chart">
