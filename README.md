@@ -12,6 +12,7 @@ Welcome to the Employee Management System, a comprehensive web application built
     - [Screenshots](#screenshots)
     - [Links](#links)
     - [Built With](#built-with)
+  - [Local Deployment](#local-deployment)
   - [What I Learned](#what-i-learned)
   - [Author](#author)
 
@@ -53,6 +54,19 @@ Embark on this journey to create a powerful Employee Management System that not 
 - MongoDB
 - Postman
 - NPM
+
+## Local Deployment
+
+- Step 1
+  - Create a MongoDB database and collect the database username and password.
+- Step 2
+  - Save the username and password in a .env file in the netlify/functions directory
+  - ```
+    MONGODB_USERNAME=""
+    MONGODB_PASSWORD=""
+    ```
+- Step 3
+  - Now, from the root project directory run ```netlify dev``` command. The project would start running in your local machine.
 
 ## What I Learned
 
