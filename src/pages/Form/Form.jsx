@@ -14,6 +14,8 @@ function Form() {
     department: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -24,12 +26,14 @@ function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setLoading(true);
+
     if (isNaN(formData.age)) {
       alert('⚠️ ALERT!! Please enter a valid age.');
+      setLoading(false);
       return;
     }
-    
+
     try {
       const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
@@ -46,8 +50,10 @@ function Form() {
         console.error('Error submitting data:', response.statusText);
       }
     } catch (error) {
-        alert('⚠️ ALERT!! ERROR IN STORING YOUR DATA');
-        console.error('Error submitting data:', error.message);
+      alert('⚠️ ALERT!! ERROR IN STORING YOUR DATA');
+      console.error('Error submitting data:', error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +85,7 @@ function Form() {
         <input onChange={handleChange} type="email" id="email" name="email" required />
 
         <label htmlFor="gender">Gender</label>
-        <select onChange={handleChange} value={formData.gender} id="gender" name="gender">          
+        <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
           <option value="Select">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -92,7 +98,7 @@ function Form() {
         <label htmlFor="salary">Salary</label>
         <input onChange={handleChange} type="number" id="salary" name="salary" />
 
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
       </form>
     </div>
   );
