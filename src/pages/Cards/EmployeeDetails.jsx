@@ -61,7 +61,7 @@ function EmployeeDetails() {
             key={employeeData.empId}
             employeeData={employeeData}
             onEdit={() => editEmployeeData()}
-            onDelete={(empId) => deleteEmployeeData(empId)}
+            onDelete={() => deleteEmployeeData(employeeData.empId)}
           />
         ))}
       </div>
