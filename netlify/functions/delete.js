@@ -15,7 +15,7 @@ exports.handler = async function(event, context) {
     };
   }
 
-  const empId = path.split('/').pop();
+  const empId = event.queryStringParameters.empId;
 
   try {
     const existingProfile = await Profile.findOne({ empID: empId });

@@ -14,7 +14,7 @@ function EmployeeDetails() {
 
     if (shouldDelete) {
       try {
-        const response = await fetch(`/.netlify/functions/delete/${empId}`, {
+        const response = await fetch('/.netlify/functions/delete/empId=' + empId, {
           method: 'DELETE'
         });
         if (response.ok) {
