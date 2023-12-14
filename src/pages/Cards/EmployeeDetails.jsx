@@ -40,7 +40,8 @@ function EmployeeDetails() {
         const response = await fetch('/.netlify/functions/fetch');
         if (response.ok) {
           const data = await response.json();
-          setEmployeeDataList(data);
+          const sortedData = data.sort((a, b) => a.empId - b.empId);
+          setEmployeeDataList(sortedData);
         } else {
           console.error('Error fetching employee data:', response.statusText);
         }

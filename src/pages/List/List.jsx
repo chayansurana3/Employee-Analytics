@@ -83,7 +83,7 @@ function EmployeeList () {
         {
             columns,
             data: employeeData,
-            initialState: { pageIndex: 0, pageSize: 5 },
+            initialState: { pageIndex: 0, pageSize: 5, sortBy: [{ id: 'empId', desc: false }] },
         },
         useSortBy,
         usePagination
