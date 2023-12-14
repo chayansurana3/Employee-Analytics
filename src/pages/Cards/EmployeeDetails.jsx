@@ -23,7 +23,7 @@ function EmployeeDetails() {
           alert('✅✅Record Deleted Successfully');
         } else {
           alert('⚠️ ALERT!! ERROR DELETING YOUR DATA');
-          console.error('Error deleting employee record:',  response.message, response.statusText);
+          console.error('Error deleting employee record:', response.statusText);
         }
       } catch (error) {
         alert('⚠️ ALERT!! ERROR DELETING YOUR DATA');

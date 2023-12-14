@@ -19,8 +19,10 @@ exports.handler = async function(event, context) {
 
   try {
     const existingProfile = await Profile.findOne({ empID: empId });
+    console.log('Received request to delete employee with ID:', empId);
 
     if (!existingProfile) {
+      console.log('NOT FOUND', empId);
       return {
         statusCode: 404,
         body: 'Profile not found',
@@ -34,7 +36,7 @@ exports.handler = async function(event, context) {
       body: 'Employee has been deleted successfully',
     };
   } catch (error) {
-    console.error(error);
+    console.error('Error in delete function:', error);
     return {
       statusCode: 500,
       body: 'Internal Server Error',
