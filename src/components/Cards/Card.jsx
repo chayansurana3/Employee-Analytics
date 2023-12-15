@@ -5,7 +5,7 @@ import { Chart, registerables} from 'chart.js';
 import "./card.css";
 
 Chart.register(...registerables);
-function EmployeeDetailsCard({ employeeData, onEdit, onDelete }) {
+function EmployeeDetailsCard({ employeeData, onEdit, onDelete, deleting }) {
     const {
         empId,
         firstName,
@@ -58,7 +58,7 @@ function EmployeeDetailsCard({ employeeData, onEdit, onDelete }) {
 
             <div className="actions">
                 <button onClick={() => onEdit(empId)}>Edit</button>
-                <button onClick={() => onDelete(empId)}>Delete</button>
+                <button onClick={() => onDelete(empId)}>{deleting ? 'Deleting...' : 'Delete'}</button>
             </div>
         </div>
     );

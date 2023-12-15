@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 function EmployeeDetails() {
   const [employeeDataList, setEmployeeDataList] = useState([]);
+  const [deleting, setDeleting] = useState(false);
 
   const navigate = useNavigate();
   const editEmployeeData = () => navigate('/form');
@@ -21,6 +22,7 @@ function EmployeeDetails() {
       confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
+        setDeleting(true);
         try {
           const response = await fetch('/.netlify/functions/delete/empId=' + empId, {
             method: 'DELETE'
@@ -49,6 +51,9 @@ function EmployeeDetails() {
             text: "ERROR IN DELETING YOUR DATA!"
           });
           console.error('Error deleting employee record:', error.message);
+        }
+        finally{
+          setDeleting(false);
         }
       }
     });
@@ -85,6 +90,7 @@ function EmployeeDetails() {
             employeeData={employeeData}
             onEdit={() => editEmployeeData()}
             onDelete={() => deleteEmployeeData(employeeData.empId)}
+            deleting={deleting}
           />
         ))}
       </div>
