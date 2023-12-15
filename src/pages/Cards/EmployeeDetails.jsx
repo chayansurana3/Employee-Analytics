@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/Cards/Card';
 import './employeeCards.css';
+import Swal from 'sweetalert2';
 
 function EmployeeDetails() {
   const [employeeDataList, setEmployeeDataList] = useState([]);
@@ -10,27 +11,48 @@ function EmployeeDetails() {
   const editEmployeeData = () => navigate('/form');
 
   const deleteEmployeeData = async (empId) => {
-    const shouldDelete = window.confirm('Are you sure you want to delete this employee record?');
-
-    if (shouldDelete) {
-      try {
-        const response = await fetch('/.netlify/functions/delete/empId=' + empId, {
-          method: 'DELETE'
-        });
-        if (response.ok) {
-          const updatedEmployeeList = employeeDataList.filter((employee) => employee.empId !== empId);
-          setEmployeeDataList(updatedEmployeeList);
-          alert('✅✅Record Deleted Successfully');
-        } else {
-          alert('⚠️ ALERT!! ERROR DELETING YOUR DATA');
-          console.error('Error deleting employee record:', response.statusText);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch('/.netlify/functions/delete/empId=' + empId, {
+            method: 'DELETE'
+          });
+  
+          if (response.ok) {
+            const updatedEmployeeList = employeeDataList.filter((employee) => employee.empId !== empId);
+            setEmployeeDataList(updatedEmployeeList);
+            Swal.fire({
+              title: "Success!",
+              text: "Data deleted successfully!",
+              icon: "success"
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "ERROR IN DELETING YOUR DATA!"
+            });
+            console.error('Error deleting employee record:', response.statusText);
+          }
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "ERROR IN DELETING YOUR DATA!"
+          });
+          console.error('Error deleting employee record:', error.message);
         }
-      } catch (error) {
-        alert('⚠️ ALERT!! ERROR DELETING YOUR DATA');
-        console.error('Error deleting employee record:', error.message);
       }
-    }
-  };
+    });
+  };  
 
   useEffect(() => {
     document.title = "Employee Details";

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./form.css";
+import Swal from 'sweetalert2';
 
 function Form() {
   const [formData, setFormData] = useState({
@@ -29,7 +30,11 @@ function Form() {
     setLoading(true);
 
     if (isNaN(formData.age)) {
-      alert('⚠️ ALERT!! Please enter a valid age.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter a valid age!"
+      });
       setLoading(false);
       return;
     }
@@ -44,13 +49,25 @@ function Form() {
       });
 
       if (response.ok) {
-        alert('✅✅Data submitted successfully!');
+        Swal.fire({
+          title: "Success!",
+          text: "Data submitted successfully!",
+          icon: "success"
+        });
       } else {
-        alert('⚠️ ALERT!! ERROR IN STORING YOUR DATA');
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "ERROR IN STORING YOUR DATA!"
+        });
         console.error('Error submitting data:', response.statusText);
       }
     } catch (error) {
-      alert('⚠️ ALERT!! ERROR IN STORING YOUR DATA');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "ERROR IN STORING YOUR DATA!"
+      });
       console.error('Error submitting data:', error.message);
     } finally {
       setLoading(false);
