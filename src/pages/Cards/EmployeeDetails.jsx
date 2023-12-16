@@ -24,7 +24,7 @@ function EmployeeDetails() {
       if (result.isConfirmed) {
         setDeleting(true);
         try {
-          const response = await fetch('/.netlify/functions/delete/empId=' + empId, {
+          const response = await fetch(`/.netlify/functions/delete/empId=${encodeURIComponent(empId)}`, {
             method: 'DELETE'
           });
   
