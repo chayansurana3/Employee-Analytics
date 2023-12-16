@@ -15,8 +15,8 @@ exports.handler = async function(event, context) {
     };
   }
 
-  const empId = event.queryStringParameters.empId;
-
+  const empId = path.split('/').pop();
+  
   try {
     const existingProfile = await Profile.findOne({ empID: empId });
     console.log('Received request to delete employee with ID:', empId);
