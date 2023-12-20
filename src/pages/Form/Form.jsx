@@ -109,15 +109,19 @@ function Form() {
           const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
           if (response.ok) {
             const data = await response.json();
-            setFormData(data);
+            for (const key in data) {
+              setFormData(prevData => ({
+                ...prevData,
+                [key]: data[key],
+              }));
+            }
             console.log(data);
+            setAllFields();
           } else {
             console.error('Error fetching employee data:', response.statusText);
           }
         } catch (error) {
           console.error('Error fetching employee data:', error.message);
-        } finally {
-          setAllFields();
         }
       };
       fetchData();
