@@ -9,7 +9,7 @@ function EmployeeDetails() {
   const [deleting, setDeleting] = useState(false);
   
   const navigate = useNavigate();
-  const editEmployeeData = (empId) => navigate(`/form?empId=${encodeURIComponent(empId)}`);
+  const editEmployeeData = (empId) => navigate(`/form/${encodeURIComponent(empId)}`);
 
   const deleteEmployeeData = async (empId) => {
     Swal.fire({
