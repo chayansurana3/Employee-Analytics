@@ -18,15 +18,8 @@ function EmployeeDetails() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, edit it!"
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        setDeleting(true);
-        try {
-          console.log(empId);
-          const response = await fetch(`/.netlify/functions/delete/${encodeURIComponent(empId)}`, {
-            method: 'DELETE'
-          });
-          
           if (response.ok) {
             navigate(`/form/${encodeURIComponent(empId)}`);
           } else {
@@ -37,17 +30,9 @@ function EmployeeDetails() {
             });
             console.error('Error editing employee record:', response.statusText);
           }
-        } catch (error) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "ERROR IN EDITING YOUR DATA!"
-          });
-          console.error('Error editing employee record:', error.message);
-        }
-      }
-    });
-  }
+      } 
+    })
+  };
 
   const deleteEmployeeData = async (empId) => {
     Swal.fire({
