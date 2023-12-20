@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import "./form.css";
 import Swal from 'sweetalert2';
 
@@ -78,9 +78,10 @@ function Form() {
 
   useEffect(() => {
     document.title = "Handle Employee Data";
+    console.log("PAGE STARTED");
     console.log(empId);
   
-    if (empId) {
+    if (empId && empId !== ":") {
       const fetchData = async () => {
         try {
           const response = await fetch(`/.netlify/functions/fetch/${encodeURIComponent(empId)}`);

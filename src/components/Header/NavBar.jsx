@@ -15,14 +15,14 @@ function NavBar() {
       <div className="links">
         <Link to="/list">EMPLOYEE LIST</Link>
         <Link to="/details">EMPLOYEE DETAILS</Link>
-        <Link to="/form">EMPLOYEE FORM</Link>
+        <Link to="/form/:">EMPLOYEE FORM</Link>
       </div>
       <div className="dropdown">
         <button className="dropbtn"><img src={menu} alt="menu-img not found"/></button>
         <div className="dropdown-content">
           <Link to="/list">EMPLOYEE LIST</Link>
           <Link to="/details">EMPLOYEE DETAILS</Link>
-          <Link to="/form">EMPLOYEE FORM</Link>
+          <Link to="/form/:">EMPLOYEE FORM</Link>
         </div>
       </div>
     </div>
