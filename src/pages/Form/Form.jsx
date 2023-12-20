@@ -83,7 +83,7 @@ function Form() {
     if (empId) {
       const fetchData = async () => {
         try {
-          const response = await fetch('/.netlify/functions/fetch');
+          const response = await fetch(`/.netlify/functions/fetch/${encodeURIComponent(empId)}`);
           if (response.ok) {
             const data = await response.json();
             setFormData(data);
