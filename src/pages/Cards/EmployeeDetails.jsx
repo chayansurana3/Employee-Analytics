@@ -20,17 +20,15 @@ function EmployeeDetails() {
       confirmButtonText: "Yes, edit it!"
     }).then((result) => {
       if (result.isConfirmed) {
-          if (result.ok) {
-            navigate(`/form/${encodeURIComponent(empId)}`);
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "ERROR IN EDITING YOUR DATA!"
-            });
-            console.error('Error editing employee record:', response.statusText);
-          }
-      } 
+        navigate(`/form/${encodeURIComponent(empId)}`);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "ERROR IN EDITING YOUR DATA!"
+        });
+        console.error('Error editing employee record:', result.statusText);
+      }
     })
   };
 
@@ -51,7 +49,7 @@ function EmployeeDetails() {
           const response = await fetch(`/.netlify/functions/delete/${encodeURIComponent(empId)}`, {
             method: 'DELETE'
           });
-  
+
           if (response.ok) {
             const updatedEmployeeList = employeeDataList.filter((employee) => employee.empId !== empId);
             setEmployeeDataList(updatedEmployeeList);
@@ -76,16 +74,16 @@ function EmployeeDetails() {
           });
           console.error('Error deleting employee record:', error.message);
         }
-        finally{
+        finally {
           setDeleting(false);
         }
       }
     });
-  };  
+  };
 
   useEffect(() => {
     document.title = "Employee Details";
-    
+
     const fetchData = async () => {
       try {
         const response = await fetch('/.netlify/functions/fetch');
@@ -105,7 +103,7 @@ function EmployeeDetails() {
   }, []);
 
   return (
-      <div className="employee-cards-page">
+    <div className="employee-cards-page">
       <h1>Employee Details</h1>
       <div className="employee-cards-container">
         {employeeDataList.map((employeeData) => (
