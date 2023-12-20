@@ -87,15 +87,15 @@ function Form() {
     const ageInput = document.getElementById('age');
     const salaryInput = document.getElementById('salary');
 
-    empIdInput.value = formData.empId || '';
-    firstnameInput.value = formData.firstname || '';
-    lastnameInput.value = formData.lastname || '';
-    departmentInput.value = formData.department || '';
-    positionInput.value = formData.position || '';
-    emailInput.value = formData.email || '';
-    genderInput.value = formData.gender || '';
-    ageInput.value = formData.age || '';
-    salaryInput.value = formData.salary || '';
+    empIdInput.value = formData.empId;
+    firstnameInput.value = formData.firstname;
+    lastnameInput.value = formData.lastname;
+    departmentInput.value = formData.department;
+    positionInput.value = formData.position;
+    emailInput.value = formData.email;
+    genderInput.value = formData.gender;
+    ageInput.value = formData.age;
+    salaryInput.value = formData.salary;
   };
 
   useEffect(() => {
@@ -110,6 +110,7 @@ function Form() {
           if (response.ok) {
             const data = await response.json();
             setFormData(data);
+            console.log(data);
           } else {
             console.error('Error fetching employee data:', response.statusText);
           }
