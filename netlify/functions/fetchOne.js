@@ -15,6 +15,7 @@ exports.handler = async function (event, context) {
   }
 
   const empId = path.split('/').pop();
+  console.log(empId);
 
   try {
     const employee = await Profile.findOne({ empId: empId });
