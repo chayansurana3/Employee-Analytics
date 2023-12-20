@@ -76,11 +76,33 @@ function Form() {
     }
   };
 
+  const setAllFields = () => {
+    const empIdInput = document.getElementById('empId');
+    const firstnameInput = document.getElementById('firstname');
+    const lastnameInput = document.getElementById('lastname');
+    const departmentInput = document.getElementById('department');
+    const positionInput = document.getElementById('position');
+    const emailInput = document.getElementById('email');
+    const genderInput = document.getElementById('gender');
+    const ageInput = document.getElementById('age');
+    const salaryInput = document.getElementById('salary');
+
+    empIdInput.value = formData.empId || '';
+    firstnameInput.value = formData.firstname || '';
+    lastnameInput.value = formData.lastname || '';
+    departmentInput.value = formData.department || '';
+    positionInput.value = formData.position || '';
+    emailInput.value = formData.email || '';
+    genderInput.value = formData.gender || '';
+    ageInput.value = formData.age || '';
+    salaryInput.value = formData.salary || '';
+  };
+
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log("PAGE STARTED");
     console.log(empId);
-  
+
     if (empId && empId !== ":") {
       const fetchData = async () => {
         try {
@@ -88,6 +110,7 @@ function Form() {
           if (response.ok) {
             const data = await response.json();
             setFormData(data);
+            setAllFields();
           } else {
             console.error('Error fetching employee data:', response.statusText);
           }
@@ -105,25 +128,25 @@ function Form() {
       <h4>Fields marked with asterisk(*) are compulsory</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="empId">Employee ID*</label>
-        <input onChange={handleChange} type="number" id="empId" name="empId" value={formData.empId} required />
+        <input onChange={handleChange} type="number" id="empId" name="empId" required />
 
         <label htmlFor="firstName">First Name*</label>
-        <input onChange={handleChange} type="text" id="firstname" name="firstname" value={formData.firstName} required />
+        <input onChange={handleChange} type="text" id="firstname" name="firstname" required />
 
         <label htmlFor="lastName">Last Name*</label>
-        <input onChange={handleChange} type="text" id="lastname" name="lastname" value={formData.lastName} required />
+        <input onChange={handleChange} type="text" id="lastname" name="lastname" required />
 
         <label htmlFor="department">Department*</label>
-        <input onChange={handleChange} type="text" id="department" name="department" value={formData.department} required />
+        <input onChange={handleChange} type="text" id="department" name="department" required />
 
         <label htmlFor="position">Position*</label>
-        <input onChange={handleChange} type="text" id="position" name="position" value={formData.position} required />
+        <input onChange={handleChange} type="text" id="position" name="position" required />
 
         <label htmlFor="email">Email*</label>
-        <input onChange={handleChange} type="email" id="email" name="email" value={formData.email} required />
+        <input onChange={handleChange} type="email" id="email" name="email" required />
 
         <label htmlFor="gender">Gender</label>
-        <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
+        <select onChange={handleChange} value="Select" id="gender" name="gender">
           <option value="Select">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -131,10 +154,10 @@ function Form() {
         </select>
 
         <label htmlFor="age">Age</label>
-        <input onChange={handleChange} type="number" id="age" name="age" value={formData.age} />
+        <input onChange={handleChange} type="number" id="age" name="age" />
 
         <label htmlFor="salary">Salary</label>
-        <input onChange={handleChange} type="number" id="salary" name="salary" value={formData.salary} />
+        <input onChange={handleChange} type="number" id="salary" name="salary" />
 
         <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
       </form>
