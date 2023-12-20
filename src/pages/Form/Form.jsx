@@ -110,12 +110,13 @@ function Form() {
           if (response.ok) {
             const data = await response.json();
             setFormData(data);
-            setAllFields();
           } else {
             console.error('Error fetching employee data:', response.statusText);
           }
         } catch (error) {
           console.error('Error fetching employee data:', error.message);
+        } finally {
+          setAllFields();
         }
       };
       fetchData();
@@ -146,7 +147,7 @@ function Form() {
         <input onChange={handleChange} type="email" id="email" name="email" required />
 
         <label htmlFor="gender">Gender</label>
-        <select onChange={handleChange} value="Select" id="gender" name="gender">
+        <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
           <option value="Select">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
