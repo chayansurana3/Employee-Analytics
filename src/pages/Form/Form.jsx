@@ -18,6 +18,7 @@ function Form() {
 
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
+  console.log(empId);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,9 +79,9 @@ function Form() {
 
   useEffect(() => {
     document.title = "Handle Employee Data";
-    
+    console.log(empId);
+  
     if (empId) {
-      console.log(empId);
       const fetchData = async () => {
         try {
           const response = await fetch('/.netlify/functions/fetch');
