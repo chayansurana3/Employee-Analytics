@@ -109,12 +109,16 @@ function Form() {
           const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
           if (response.ok) {
             const data = await response.json();
-            for (const key in data) {
-              setFormData(prevData => ({
-                ...prevData,
-                [key]: data[key],
-              }));
-            }
+            console.log(data);
+            setFormData(prevData => {
+              let updatedData = { ...prevData };
+              for (const key in data) {
+                if (updatedData.hasOwnProperty(key)) {
+                  updatedData[key] = data[key];
+                }
+              }
+              return updatedData;
+            });
             console.log(formData);
             setAllFields();
           } else {
