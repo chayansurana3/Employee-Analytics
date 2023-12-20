@@ -7,9 +7,47 @@ import Swal from 'sweetalert2';
 function EmployeeDetails() {
   const [employeeDataList, setEmployeeDataList] = useState([]);
   const [deleting, setDeleting] = useState(false);
-  
   const navigate = useNavigate();
-  const editEmployeeData = (empId) => navigate(`/form/${encodeURIComponent(empId)}`);
+
+  const editEmployeeData = (empId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, edit it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setDeleting(true);
+        try {
+          console.log(empId);
+          const response = await fetch(`/.netlify/functions/delete/${encodeURIComponent(empId)}`, {
+            method: 'DELETE'
+          });
+          
+          if (response.ok) {
+            navigate(`/form/${encodeURIComponent(empId)}`);
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "ERROR IN EDITING YOUR DATA!"
+            });
+            console.error('Error editing employee record:', response.statusText);
+          }
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "ERROR IN EDITING YOUR DATA!"
+          });
+          console.error('Error editing employee record:', error.message);
+        }
+      }
+    });
+  }
 
   const deleteEmployeeData = async (empId) => {
     Swal.fire({
