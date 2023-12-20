@@ -113,9 +113,8 @@ function Form() {
             setFormData(prevData => {
               let updatedData = { ...prevData };
               for (const key in data) {
-                if (updatedData.hasOwnProperty(key)) {
-                  updatedData[key] = data[key];
-                }
+                if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;                
+                updatedData[key] = data[key];
               }
               return updatedData;
             });
