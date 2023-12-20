@@ -105,22 +105,22 @@ function Form() {
       <h4>Fields marked with asterisk(*) are compulsory</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="empId">Employee ID*</label>
-        <input onChange={handleChange} type="number" id="empId" name="empId" required />
+        <input onChange={handleChange} type="number" id="empId" name="empId" value={formData.empId} required />
 
         <label htmlFor="firstName">First Name*</label>
-        <input onChange={handleChange} type="text" id="firstname" name="firstname" required />
+        <input onChange={handleChange} type="text" id="firstname" name="firstname" value={formData.firstName} required />
 
         <label htmlFor="lastName">Last Name*</label>
-        <input onChange={handleChange} type="text" id="lastname" name="lastname" required />
+        <input onChange={handleChange} type="text" id="lastname" name="lastname" value={formData.lastName} required />
 
         <label htmlFor="department">Department*</label>
-        <input onChange={handleChange} type="text" id="department" name="department" required />
+        <input onChange={handleChange} type="text" id="department" name="department" value={formData.department} required />
 
         <label htmlFor="position">Position*</label>
-        <input onChange={handleChange} type="text" id="position" name="position" required />
+        <input onChange={handleChange} type="text" id="position" name="position" value={formData.position} required />
 
         <label htmlFor="email">Email*</label>
-        <input onChange={handleChange} type="email" id="email" name="email" required />
+        <input onChange={handleChange} type="email" id="email" name="email" value={formData.email} required />
 
         <label htmlFor="gender">Gender</label>
         <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
@@ -131,10 +131,10 @@ function Form() {
         </select>
 
         <label htmlFor="age">Age</label>
-        <input onChange={handleChange} type="number" id="age" name="age" />
+        <input onChange={handleChange} type="number" id="age" name="age" value={formData.age} />
 
         <label htmlFor="salary">Salary</label>
-        <input onChange={handleChange} type="number" id="salary" name="salary" />
+        <input onChange={handleChange} type="number" id="salary" name="salary" value={formData.salary} />
 
         <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
       </form>
