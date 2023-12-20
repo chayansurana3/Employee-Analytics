@@ -115,7 +115,7 @@ function Form() {
                 [key]: data[key],
               }));
             }
-            console.log(data);
+            console.log(formData);
             setAllFields();
           } else {
             console.error('Error fetching employee data:', response.statusText);
