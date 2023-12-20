@@ -18,7 +18,6 @@ function Form() {
 
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
-  console.log(empId);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
