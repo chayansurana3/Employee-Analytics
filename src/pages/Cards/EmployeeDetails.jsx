@@ -7,9 +7,9 @@ import Swal from 'sweetalert2';
 function EmployeeDetails() {
   const [employeeDataList, setEmployeeDataList] = useState([]);
   const [deleting, setDeleting] = useState(false);
-
+  
   const navigate = useNavigate();
-  const editEmployeeData = () => navigate('/form');
+  const editEmployeeData = (empId) => navigate(`/form?empId=${encodeURIComponent(empId)}`);
 
   const deleteEmployeeData = async (empId) => {
     Swal.fire({
@@ -89,7 +89,7 @@ function EmployeeDetails() {
           <Card
             key={employeeData.empId}
             employeeData={employeeData}
-            onEdit={() => editEmployeeData()}
+            onEdit={() => editEmployeeData(employeeData.empId)}
             onDelete={() => deleteEmployeeData(employeeData.empId)}
             deleting={deleting}
           />

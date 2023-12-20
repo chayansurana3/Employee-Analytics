@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./form.css";
 import Swal from 'sweetalert2';
 
@@ -16,6 +17,7 @@ function Form() {
   });
 
   const [loading, setLoading] = useState(false);
+  const { empId } = useParams();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,8 +77,26 @@ function Form() {
   };
 
   useEffect(() => {
-    document.title = "Handle Employee Data"
-  }, []);
+    document.title = "Handle Employee Data";
+    
+    if (empId) {
+      console.log(empId);
+      const fetchData = async () => {
+        try {
+          const response = await fetch('/.netlify/functions/fetch');
+          if (response.ok) {
+            const data = await response.json();
+            setFormData(data);
+          } else {
+            console.error('Error fetching employee data:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error fetching employee data:', error.message);
+        }
+      };
+      fetchData();
+    }
+  }, [empId]);
 
   return (
     <div className="form-container">
