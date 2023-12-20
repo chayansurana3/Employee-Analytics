@@ -20,7 +20,7 @@ function EmployeeDetails() {
       confirmButtonText: "Yes, edit it!"
     }).then((result) => {
       if (result.isConfirmed) {
-          if (response.ok) {
+          if (result.ok) {
             navigate(`/form/${encodeURIComponent(empId)}`);
           } else {
             Swal.fire({
