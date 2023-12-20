@@ -88,8 +88,8 @@ function Form() {
     const salaryInput = document.getElementById('salary');
 
     empIdInput.value = formData.empId;
-    firstnameInput.value = formData.firstname;
-    lastnameInput.value = formData.lastname;
+    firstnameInput.value = formData.firstName;
+    lastnameInput.value = formData.lastName;
     departmentInput.value = formData.department;
     positionInput.value = formData.position;
     emailInput.value = formData.email;
