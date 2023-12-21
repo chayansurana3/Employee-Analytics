@@ -17,10 +17,10 @@ function Form() {
   });
   
   const [loading, setLoading] = useState(false);
+  const { empId } = useParams();
   
   useEffect(() => {
     document.title = "Handle Employee Data";
-    const { empId } = useParams();
     console.log(empId);
     
     const fetchData = async () => {
@@ -30,14 +30,7 @@ function Form() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          setFormData((prevData) => {
-            let updatedData = { ...prevData };
-            for (const key in data) {
-              if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;
-              updatedData[key] = data[key];
-            }
-            return updatedData;
-          });
+          setFormData(data);
           console.log(formData);
           setAllFields();
         } else {
@@ -49,7 +42,7 @@ function Form() {
     };
   
     fetchData();
-  }, []);
+  }, [empId, setFormData]);
 
 
   const handleChange = (e) => {
