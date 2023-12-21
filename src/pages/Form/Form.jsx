@@ -98,6 +98,41 @@ function Form() {
     salaryInput.value = formData.salary;
   };
 
+  const resetAllFields = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Reset data!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const empIdInput = document.getElementById('empId');
+        const firstnameInput = document.getElementById('firstname');
+        const lastnameInput = document.getElementById('lastname');
+        const departmentInput = document.getElementById('department');
+        const positionInput = document.getElementById('position');
+        const emailInput = document.getElementById('email');
+        const genderInput = document.getElementById('gender');
+        const ageInput = document.getElementById('age');
+        const salaryInput = document.getElementById('salary');
+    
+        empIdInput.value = '';
+        firstnameInput.value = '';
+        lastnameInput.value = '';
+        departmentInput.value = '';
+        positionInput.value = '';
+        emailInput.value = '';
+        genderInput.value = '';
+        ageInput.value = '';
+        salaryInput.value = '';
+      } 
+      else return;
+    })
+  };
+
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log("PAGE STARTED");
@@ -107,13 +142,13 @@ function Form() {
       const fetchData = async () => {
         try {
           const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
-          if (response.ok) {
+          if (response === 'ok') {
             const data = await response.json();
             console.log(data);
             setFormData(prevData => {
               let updatedData = { ...prevData };
               for (const key in data) {
-                if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;                
+                if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;
                 updatedData[key] = data[key];
               }
               return updatedData;
@@ -129,7 +164,7 @@ function Form() {
       };
       fetchData();
     }
-  }, [empId]);
+  }, [empId, formData, setFormData, setAllFields]);
 
   return (
     <div className="form-container">
@@ -168,7 +203,11 @@ function Form() {
         <label htmlFor="salary">Salary</label>
         <input onChange={handleChange} type="number" id="salary" name="salary" />
 
-        <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
+        <div className="button-container">
+          <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
+          <button type="button" onClick={resetAllFields}>Reset</button>
+        </div>
+        
       </form>
     </div>
   );
