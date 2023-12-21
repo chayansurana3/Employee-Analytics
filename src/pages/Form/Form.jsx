@@ -138,6 +138,7 @@ function Form() {
     console.log(empId);
 
     const fetchData = async () => {
+      if (empId === ":") return;
       try {
         const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
         if (response.ok) {
@@ -161,7 +162,7 @@ function Form() {
       }
     };
 
-    if (empId && empId !== ":") fetchData();
+    fetchData();
   }, [empId, formData]);
 
 
