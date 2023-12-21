@@ -15,14 +15,14 @@ function Form() {
     salary: "",
     department: ""
   });
-
+  
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
-
+  
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log(empId);
-
+    
     const fetchData = async () => {
       if (empId === ":") return;
       try {
@@ -30,24 +30,19 @@ function Form() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          setTimeout(() => {
-            setFormData({
-              empId: data.empId,
-              email: data.email,
-              firstName: data.firstName,
-              lastName: data.lastName,
-              age: data.age,
-              gender: data.gender,
-              position: data.position,
-              salary: data.salary,
-              department: data.department
-            });
-          }, 2000);
-          setTimeout(() => {
-            console.log("Time Out for 4 seconds");
-            console.log(formData);
-            setAllFields();
-          }, 4000);
+          setFormData({
+            empId: data.empId,
+            email: data.email,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            age: data.age,
+            gender: data.gender,
+            position: data.position,
+            salary: data.salary,
+            department: data.department
+          });
+          console.log(formData);
+          setAllFields();
         } else {
           console.error('Error fetching employee data:', response.statusText);
         }
@@ -55,9 +50,9 @@ function Form() {
         console.error('Error fetching employee data:', error.message);
       }
     };
-
+  
     fetchData();
-  }, [empId, setFormData]);
+  }, [empId]);
 
   const setAllFields = () => {
     const empIdInput = document.getElementById('empId');
@@ -102,7 +97,7 @@ function Form() {
       setLoading(false);
       return;
     }
-
+    
     try {
       const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
@@ -137,6 +132,7 @@ function Form() {
       setLoading(false);
     }
   };
+
 
   const resetAllFields = () => {
     Swal.fire({
