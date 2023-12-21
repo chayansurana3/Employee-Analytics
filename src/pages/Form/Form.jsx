@@ -163,7 +163,7 @@ function Form() {
     };
 
     fetchData();
-  }, [empId]);
+  }, [empId, setFormData, setAllFields]);
 
 
   return (
