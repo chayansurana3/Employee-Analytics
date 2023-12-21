@@ -53,8 +53,30 @@ function Form() {
   
     fetchData();
   }, [empId, setFormData]);
+  
+  const setAllFields = () => {
+    const empIdInput = document.getElementById('empId');
+    const firstnameInput = document.getElementById('firstname');
+    const lastnameInput = document.getElementById('lastname');
+    const departmentInput = document.getElementById('department');
+    const positionInput = document.getElementById('position');
+    const emailInput = document.getElementById('email');
+    const genderInput = document.getElementById('gender');
+    const ageInput = document.getElementById('age');
+    const salaryInput = document.getElementById('salary');
 
-
+    console.log("This is the first field i am setting: ", formData.empId);
+    empIdInput.value = formData.empId;
+    firstnameInput.value = formData.firstName;
+    lastnameInput.value = formData.lastName;
+    departmentInput.value = formData.department;
+    positionInput.value = formData.position;
+    emailInput.value = formData.email;
+    genderInput.value = formData.gender;
+    ageInput.value = formData.age;
+    salaryInput.value = formData.salary;
+  };
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -110,28 +132,6 @@ function Form() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const setAllFields = () => {
-    const empIdInput = document.getElementById('empId');
-    const firstnameInput = document.getElementById('firstname');
-    const lastnameInput = document.getElementById('lastname');
-    const departmentInput = document.getElementById('department');
-    const positionInput = document.getElementById('position');
-    const emailInput = document.getElementById('email');
-    const genderInput = document.getElementById('gender');
-    const ageInput = document.getElementById('age');
-    const salaryInput = document.getElementById('salary');
-
-    empIdInput.value = formData.empId;
-    firstnameInput.value = formData.firstName;
-    lastnameInput.value = formData.lastName;
-    departmentInput.value = formData.department;
-    positionInput.value = formData.position;
-    emailInput.value = formData.email;
-    genderInput.value = formData.gender;
-    ageInput.value = formData.age;
-    salaryInput.value = formData.salary;
   };
 
   const resetAllFields = () => {
