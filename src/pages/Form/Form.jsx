@@ -142,7 +142,7 @@ function Form() {
       const fetchData = async () => {
         try {
           const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
-          if (response === 'ok') {
+          if (response.ok) {
             const data = await response.json();
             console.log(data);
             setFormData(prevData => {
@@ -191,7 +191,6 @@ function Form() {
 
         <label htmlFor="gender">Gender</label>
         <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
-          <option value="Select">Select</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Others">Others</option>
@@ -207,7 +206,7 @@ function Form() {
           <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
           <button type="button" onClick={resetAllFields}>Reset</button>
         </div>
-        
+
       </form>
     </div>
   );
