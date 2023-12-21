@@ -15,21 +15,20 @@ function Form() {
     salary: "",
     department: ""
   });
-  
+
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
-  
+
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log(empId);
-    
+
     const fetchData = async () => {
       if (empId === ":") return;
       try {
         const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setFormData({
             empId: data.empId,
             email: data.email,
@@ -41,8 +40,6 @@ function Form() {
             salary: data.salary,
             department: data.department
           });
-          console.log(formData);
-          setAllFields();
         } else {
           console.error('Error fetching employee data:', response.statusText);
         }
@@ -50,31 +47,9 @@ function Form() {
         console.error('Error fetching employee data:', error.message);
       }
     };
-  
+    
     fetchData();
   }, [empId]);
-
-  const setAllFields = () => {
-    const empIdInput = document.getElementById('empId');
-    const firstnameInput = document.getElementById('firstname');
-    const lastnameInput = document.getElementById('lastname');
-    const departmentInput = document.getElementById('department');
-    const positionInput = document.getElementById('position');
-    const emailInput = document.getElementById('email');
-    const genderInput = document.getElementById('gender');
-    const ageInput = document.getElementById('age');
-    const salaryInput = document.getElementById('salary');
-
-    empIdInput.value = formData.empId;
-    firstnameInput.value = formData.firstName;
-    lastnameInput.value = formData.lastName;
-    departmentInput.value = formData.department;
-    positionInput.value = formData.position;
-    emailInput.value = formData.email;
-    genderInput.value = formData.gender;
-    ageInput.value = formData.age;
-    salaryInput.value = formData.salary;
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -97,7 +72,7 @@ function Form() {
       setLoading(false);
       return;
     }
-    
+
     try {
       const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
@@ -175,22 +150,22 @@ function Form() {
       <h4>Fields marked with asterisk(*) are compulsory</h4>
       <form onSubmit={handleSubmit}>
         <label htmlFor="empId">Employee ID*</label>
-        <input onChange={handleChange} type="number" id="empId" name="empId" required />
+        <input onChange={handleChange} type="number" id="empId" value={formData.empId} name="empId" required />
 
         <label htmlFor="firstName">First Name*</label>
-        <input onChange={handleChange} type="text" id="firstname" name="firstname" required />
+        <input onChange={handleChange} type="text" id="firstname" value={formData.firstName} name="firstName" required />
 
         <label htmlFor="lastName">Last Name*</label>
-        <input onChange={handleChange} type="text" id="lastname" name="lastname" required />
+        <input onChange={handleChange} type="text" id="lastname" value={formData.lastName} name="lastName" required />
 
         <label htmlFor="department">Department*</label>
-        <input onChange={handleChange} type="text" id="department" name="department" required />
+        <input onChange={handleChange} type="text" id="department" value={formData.department} name="department" required />
 
         <label htmlFor="position">Position*</label>
-        <input onChange={handleChange} type="text" id="position" name="position" required />
+        <input onChange={handleChange} type="text" id="position" value={formData.position} name="position" required />
 
         <label htmlFor="email">Email*</label>
-        <input onChange={handleChange} type="email" id="email" name="email" required />
+        <input onChange={handleChange} type="email" id="email" value={formData.email} name="email" required />
 
         <label htmlFor="gender">Gender</label>
         <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
@@ -200,10 +175,10 @@ function Form() {
         </select>
 
         <label htmlFor="age">Age</label>
-        <input onChange={handleChange} type="number" id="age" name="age" />
+        <input onChange={handleChange} type="number" id="age" value={formData.age} name="age" />
 
         <label htmlFor="salary">Salary</label>
-        <input onChange={handleChange} type="number" id="salary" name="salary" />
+        <input onChange={handleChange} type="number" id="salary" value={formData.salary} name="salary" />
 
         <div className="button-container">
           <button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
