@@ -162,7 +162,7 @@ function Form() {
     };
 
     if (empId && empId !== ":") fetchData();
-  }, [empId]);
+  }, [empId, formData]);
 
 
   return (
