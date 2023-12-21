@@ -15,14 +15,14 @@ function Form() {
     salary: "",
     department: ""
   });
-  
+
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
-  
+
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log(empId);
-    
+
     const fetchData = async () => {
       if (empId === ":") return;
       try {
@@ -30,6 +30,7 @@ function Form() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
+          setTimeout(() => console.log("Time Out for 5 seconds"), 5000);
           setFormData({
             empId: data.empId,
             email: data.email,
@@ -50,10 +51,10 @@ function Form() {
         console.error('Error fetching employee data:', error.message);
       }
     };
-  
+
     fetchData();
   }, [empId, setFormData]);
-  
+
   const setAllFields = () => {
     const empIdInput = document.getElementById('empId');
     const firstnameInput = document.getElementById('firstname');
@@ -65,7 +66,6 @@ function Form() {
     const ageInput = document.getElementById('age');
     const salaryInput = document.getElementById('salary');
 
-    console.log("This is the first field i am setting: ", formData.empId);
     empIdInput.value = formData.empId;
     firstnameInput.value = formData.firstName;
     lastnameInput.value = formData.lastName;
@@ -76,7 +76,7 @@ function Form() {
     ageInput.value = formData.age;
     salaryInput.value = formData.salary;
   };
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -98,7 +98,7 @@ function Form() {
       setLoading(false);
       return;
     }
-    
+
     try {
       const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
