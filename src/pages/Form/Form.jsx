@@ -30,17 +30,19 @@ function Form() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          setFormData({
-            empId: data.empId,
-            email: data.email,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            age: data.age,
-            gender: data.gender,
-            position: data.position,
-            salary: data.salary,
-            department: data.department
-          });
+          setTimeout(() => {
+            setFormData({
+              empId: data.empId,
+              email: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              age: data.age,
+              gender: data.gender,
+              position: data.position,
+              salary: data.salary,
+              department: data.department
+            });
+          }, 2000);
           setTimeout(() => {
             console.log("Time Out for 4 seconds");
             console.log(formData);
