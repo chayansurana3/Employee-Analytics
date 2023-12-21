@@ -30,7 +30,6 @@ function Form() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
-          setTimeout(() => console.log("Time Out for 5 seconds"), 5000);
           setFormData({
             empId: data.empId,
             email: data.email,
@@ -42,8 +41,11 @@ function Form() {
             salary: data.salary,
             department: data.department
           });
-          console.log(formData);
-          setAllFields();
+          setTimeout(() => {
+            console.log("Time Out for 4 seconds");
+            console.log(formData);
+            setAllFields();
+          }, 4000);
         } else {
           console.error('Error fetching employee data:', response.statusText);
         }
