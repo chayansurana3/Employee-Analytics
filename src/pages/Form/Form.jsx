@@ -15,9 +15,42 @@ function Form() {
     salary: "",
     department: "",
   });
-
+  
   const [loading, setLoading] = useState(false);
-  const { empId } = useParams();
+  
+  useEffect(() => {
+    document.title = "Handle Employee Data";
+    const { empId } = useParams();
+    console.log(empId);
+    
+    const fetchData = async () => {
+      if (empId === ":") return;
+      try {
+        const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setFormData((prevData) => {
+            let updatedData = { ...prevData };
+            for (const key in data) {
+              if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;
+              updatedData[key] = data[key];
+            }
+            return updatedData;
+          });
+          console.log(formData);
+          setAllFields();
+        } else {
+          console.error('Error fetching employee data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching employee data:', error.message);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +73,7 @@ function Form() {
       setLoading(false);
       return;
     }
-
+    
     try {
       const response = await fetch('/.netlify/functions/submit', {
         method: 'POST',
@@ -132,39 +165,6 @@ function Form() {
       else return;
     })
   };
-
-  useEffect(() => {
-    document.title = "Handle Employee Data";
-    console.log(empId);
-
-    const fetchData = async () => {
-      if (empId === ":") return;
-      try {
-        const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          setFormData((prevData) => {
-            let updatedData = { ...prevData };
-            for (const key in data) {
-              if (!Object.prototype.hasOwnProperty.call(updatedData, key)) continue;
-              updatedData[key] = data[key];
-            }
-            return updatedData;
-          });
-          console.log(formData);
-          setAllFields();
-        } else {
-          console.error('Error fetching employee data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching employee data:', error.message);
-      }
-    };
-
-    fetchData();
-  }, [empId, setFormData, setAllFields]);
-
 
   return (
     <div className="form-container">
