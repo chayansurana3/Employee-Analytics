@@ -2,6 +2,13 @@ h4 {
     color: red;
 }
 
+#fetchingPara{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: large;
+    color: darkslategrey;
+}
+
 .form-container {
     border-radius: 8px;
     padding: 20px;
