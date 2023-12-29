@@ -17,7 +17,6 @@ function Form() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [fetching, setFetching] = useState(false);
   const { empId } = useParams();
 
   useEffect(() => {
@@ -28,7 +27,7 @@ function Form() {
       if (empId === ":") return;
       try {
         const response = await fetch(`/.netlify/functions/fetchOne/${encodeURIComponent(empId)}`);
-        setFetching(true);
+        Swal.fire("Fetching employee data to edit!");
         if (response.ok) {
           const data = await response.json();
           setFormData({
@@ -47,9 +46,7 @@ function Form() {
         }
       } catch (error) {
         console.error('Error fetching employee data:', error.message);
-      } finally {
-        setFetching(false);
-      }
+      } 
     };
     
     fetchData();
@@ -152,7 +149,6 @@ function Form() {
     <div className="form-container">
       <h1>Employee Profile Form</h1>
       <h4>Fields marked with asterisk(*) are compulsory</h4>
-      {fetching && <p id="fetchingPara">Fetching Data To Edit...</p>}
       <form onSubmit={handleSubmit}>
         <label htmlFor="empId">Employee ID*</label>
         <input onChange={handleChange} type="number" id="empId" value={formData.empId} name="empId" required />
