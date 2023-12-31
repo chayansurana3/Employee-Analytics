@@ -33,6 +33,14 @@ label {
     font-weight: bolder;
 }
 
+.label-dark{
+    color: white;
+}
+
+.label-light{
+    color: black;
+}
+
 input,
 select {
     width: 80%;

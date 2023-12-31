@@ -18,10 +18,14 @@ function Form() {
 
   const [loading, setLoading] = useState(false);
   const { empId } = useParams();
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     document.title = "Handle Employee Data";
     console.log(empId);
+    
+    let currTheme = localStorage.getItem("theme");
+    setTheme(currTheme);
 
     const fetchData = async () => {
       if (empId === ":") return;
@@ -50,7 +54,7 @@ function Form() {
     };
     
     fetchData();
-  }, [empId]);
+  }, [empId, theme]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -150,35 +154,35 @@ function Form() {
       <h1>Employee Profile Form</h1>
       <h4>Fields marked with asterisk(*) are compulsory</h4>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="empId">Employee ID*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="empId">Employee ID*</label>
         <input onChange={handleChange} type="number" id="empId" value={formData.empId} name="empId" required />
 
-        <label htmlFor="firstName">First Name*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="firstName">First Name*</label>
         <input onChange={handleChange} type="text" id="firstname" value={formData.firstName} name="firstName" required />
 
-        <label htmlFor="lastName">Last Name*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="lastName">Last Name*</label>
         <input onChange={handleChange} type="text" id="lastname" value={formData.lastName} name="lastName" required />
 
-        <label htmlFor="department">Department*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="department">Department*</label>
         <input onChange={handleChange} type="text" id="department" value={formData.department} name="department" required />
 
-        <label htmlFor="position">Position*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="position">Position*</label>
         <input onChange={handleChange} type="text" id="position" value={formData.position} name="position" required />
 
-        <label htmlFor="email">Email*</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="email">Email*</label>
         <input onChange={handleChange} type="email" id="email" value={formData.email} name="email" required />
 
-        <label htmlFor="gender">Gender</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="gender">Gender</label>
         <select onChange={handleChange} value={formData.gender} id="gender" name="gender">
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Others">Others</option>
         </select>
 
-        <label htmlFor="age">Age</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="age">Age</label>
         <input onChange={handleChange} type="number" id="age" value={formData.age} name="age" />
 
-        <label htmlFor="salary">Salary</label>
+        <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="salary">Salary</label>
         <input onChange={handleChange} type="number" id="salary" value={formData.salary} name="salary" />
 
         <div className="button-container">
