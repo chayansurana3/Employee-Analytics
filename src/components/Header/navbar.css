@@ -74,23 +74,21 @@ img {
   }
 
   .dropbtn {
-    background-color: #3a5fc5;
-    color: white;
-    padding: 0.5rem;
-    font-size: 1rem;
+    background-color: #006994;
     border: none;
     cursor: pointer;
     display: inline-block;
     margin-right: 10px;
     margin-top: -2px;
   }
-
+  
   .dropdown {
     position: relative;
     margin-left: auto;
     display: inline-block;
   }
 
+  
   .dropdown-content {
     display: none;
     position: absolute;
@@ -117,6 +115,7 @@ img {
   }
 
   .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: black;
   }
+
 }

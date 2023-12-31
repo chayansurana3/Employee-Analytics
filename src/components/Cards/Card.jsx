@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
-import { Chart, registerables} from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 import "./card.css";
 
 Chart.register(...registerables);
@@ -23,11 +23,11 @@ function EmployeeDetailsCard({ employeeData, onEdit, onDelete, deleting }) {
         datasets: [
             {
                 label: 'Salary',
-                backgroundColor: 'rgba(75,192,192,0.2)',
-                borderColor: 'rgba(75,192,192,1)',
+                backgroundColor: '#4CAF50', 
+                borderColor: '#4CAF50',
                 borderWidth: 1,
-                hoverBackgroundColor: 'rgba(75,192,192,0.4)',
-                hoverBorderColor: 'rgba(75,192,192,1)',
+                hoverBackgroundColor: '#45A049', 
+                hoverBorderColor: '#45A049',
                 data: [salary],
             },
         ],

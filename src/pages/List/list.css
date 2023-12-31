@@ -6,6 +6,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 16px;
+    border: white solid 2px;
 }
 
 .employee-table th,

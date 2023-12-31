@@ -58,7 +58,7 @@ function Home() {
   };
 
   const ageData = {
-    labels: Array.from({ length: 10 }, (_, i) => `${i * 10 + 1}-${(i + 1) * 10}`),
+    labels: Array.from({ length: 10 }, (_, i) => `${i * 10 + 1}-${(i + 1) * 10}`), 
     datasets: [{
       label: 'Age Distribution',
       data: employeeData.map(employee => employee.age || 0),

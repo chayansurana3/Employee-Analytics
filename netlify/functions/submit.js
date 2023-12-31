@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Profile = require('./model');
 
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
 
   const username = process.env.MONGODB_USERNAME;
   const password = process.env.MONGODB_PASSWORD;
@@ -26,8 +26,8 @@ exports.handler = async function(event, context) {
         { empId },
         {
           email: data.email,
-          firstName: data.firstname,
-          lastName: data.lastname,
+          firstName: data.firstName,
+          lastName: data.lastName,
           age: data.age === "" ? 0 : parseInt(data.age),
           gender: data.gender,
           position: data.position,
@@ -52,8 +52,8 @@ exports.handler = async function(event, context) {
     const newProfileData = {
       empId,
       email: data.email,
-      firstName: data.firstname,
-      lastName: data.lastname,
+      firstName: data.firstName,
+      lastName: data.lastName,
       age: data.age === "" ? 0 : parseInt(data.age),
       gender: data.gender,
       position: data.position,
