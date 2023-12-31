@@ -83,7 +83,9 @@ function EmployeeDetails() {
 
   useEffect(() => {
     document.title = "Employee Details";
-
+    let theme = localStorage.getItem("theme");
+    if (theme === 'dark') document.body.classList.toggle('dark-theme');
+    
     const fetchData = async () => {
       try {
         const response = await fetch('/.netlify/functions/fetch');

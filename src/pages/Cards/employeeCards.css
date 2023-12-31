@@ -8,3 +8,7 @@
     justify-content: space-between;
     border: white solid 2px;
 }
+
+.dark-theme{
+    color: black;
+}
