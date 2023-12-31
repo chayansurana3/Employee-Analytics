@@ -5,7 +5,7 @@ import './list.css';
 function EmployeeList () {
     let [employeeData, setEmployeeData] = useState([]);
     let [theme, setTheme] = useState("light");
-    let tdClass = theme === "light" ? null : "dark-theme-td";
+    let tdClass = theme === "light" ? null : "theme-td";
 
     useEffect(() => {
         document.title = "Employee Lists";

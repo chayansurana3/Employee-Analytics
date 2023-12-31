@@ -24,7 +24,7 @@ function EmployeeDetailsCard({ employeeData, onEdit, onDelete, deleting }) {
             {
                 label: 'Salary',
                 backgroundColor: 'rgba(75,192,192,0.2)', 
-                borderColor: '#4CAF50',
+                borderColor: 'rgba(75,192,192,0.2)',
                 borderWidth: 1,
                 hoverBackgroundColor: '#45A049', 
                 hoverBorderColor: '#45A049',

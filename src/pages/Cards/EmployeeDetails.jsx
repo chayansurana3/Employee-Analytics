@@ -86,7 +86,7 @@ function EmployeeDetails() {
     document.title = "Employee Details";
     let currTheme = localStorage.getItem("theme");
     setTheme(currTheme);
-    if (theme === 'dark') document.body.classList.add('dark-theme-cards');
+    if (theme === 'dark') document.body.classList.add('cards-dark');
     
     const fetchData = async () => {
       try {
