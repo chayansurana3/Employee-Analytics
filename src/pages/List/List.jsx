@@ -7,7 +7,8 @@ function EmployeeList () {
 
     useEffect(() => {
         document.title = "Employee Lists";
-        
+        let theme = localStorage.getItem("theme");
+        if (theme === "dark") document.body.classList.add('dark-theme');
         const fetchData = async () => {
             try {
                 const response = await fetch('/.netlify/functions/fetch');
