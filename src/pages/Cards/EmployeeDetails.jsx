@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 function EmployeeDetails() {
   const [employeeDataList, setEmployeeDataList] = useState([]);
   const [deleting, setDeleting] = useState(false);
+  const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
 
   const editEmployeeData = (empId) => {
@@ -83,8 +84,9 @@ function EmployeeDetails() {
 
   useEffect(() => {
     document.title = "Employee Details";
-    let theme = localStorage.getItem("theme");
-    if (theme === 'dark') document.body.classList.add('dark-theme');
+    let currTheme = localStorage.getItem("theme");
+    setTheme(currTheme);
+    if (theme === 'dark') document.body.classList.add('dark-theme-cards');
     
     const fetchData = async () => {
       try {
