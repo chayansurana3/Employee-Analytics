@@ -4,11 +4,14 @@ import './list.css';
 
 function EmployeeList () {
     let [employeeData, setEmployeeData] = useState([]);
+    let [theme, setTheme] = useState("light");
+    let tdClass = theme === "light" ? null : "dark-theme";
 
     useEffect(() => {
         document.title = "Employee Lists";
-        let theme = localStorage.getItem("theme");
-        if (theme === "dark") document.body.classList.add('dark-theme');
+        let currTheme = localStorage.getItem("theme");
+        setTheme(currTheme);
+
         const fetchData = async () => {
             try {
                 const response = await fetch('/.netlify/functions/fetch');
@@ -24,7 +27,7 @@ function EmployeeList () {
         };
         fetchData();
 
-    }, []);
+    }, [theme]);
 
     const columns = React.useMemo(
         () => [
@@ -112,7 +115,7 @@ function EmployeeList () {
                         return (
                             <tr {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
-                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    <td className={tdClass} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                 ))}
                             </tr>
                         );

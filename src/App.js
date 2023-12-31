@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import Form from "./pages/Form/Form";
 import EmployeeDetails from "./pages/Cards/EmployeeDetails";
 import EmployeeList from "./pages/List/List";
-import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import ThemeToggle from "./components/ThemeToggleButton/ThemeToggle";
 
 function App() {

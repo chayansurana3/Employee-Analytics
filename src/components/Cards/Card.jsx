@@ -23,7 +23,7 @@ function EmployeeDetailsCard({ employeeData, onEdit, onDelete, deleting }) {
         datasets: [
             {
                 label: 'Salary',
-                backgroundColor: '#4CAF50', 
+                backgroundColor: 'rgba(75,192,192,0.2)', 
                 borderColor: '#4CAF50',
                 borderWidth: 1,
                 hoverBackgroundColor: '#45A049', 

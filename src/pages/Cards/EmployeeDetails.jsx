@@ -102,7 +102,7 @@ function EmployeeDetails() {
     };
 
     fetchData();
-  }, []);
+  }, [theme]);
 
   return (
     <div className="employee-cards-page">
