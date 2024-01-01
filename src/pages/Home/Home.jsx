@@ -27,7 +27,7 @@ function Home() {
       }
     };
     fetchData();
-  }, [theme]);
+  }, [localStorage.getItem("theme")]);
 
   const averageSalary = () => {
     if (employeeData.length === 0) {

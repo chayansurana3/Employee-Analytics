@@ -27,7 +27,7 @@ function EmployeeList () {
         };
         fetchData();
 
-    }, [theme]);
+    }, [localStorage.getItem("theme")]);
 
     const columns = React.useMemo(
         () => [

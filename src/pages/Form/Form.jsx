@@ -54,7 +54,7 @@ function Form() {
     };
     
     fetchData();
-  }, [empId, theme]);
+  }, [empId, localStorage.getItem("theme")]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
