@@ -95,7 +95,7 @@ function EmployeeList () {
 
     return (
         <div className="employee-list-page">
-            <h1>Employee List</h1>
+            <h1 className={theme === "dark" ? "h1-dark" : null}>Employee List</h1>
             <table {...getTableProps()} className="employee-table">
                 <thead>
                     {headerGroups.map((headerGroup) => (

@@ -6,9 +6,12 @@ function Home() {
   const [employeeData, setEmployeeData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     document.title = "Organization Analytics";
+    let currTheme = localStorage.getItem("theme");
+    setTheme(currTheme);
 
     const fetchData = async () => {
       try {
@@ -24,7 +27,7 @@ function Home() {
       }
     };
     fetchData();
-  }, []);
+  }, [theme]);
 
   const averageSalary = () => {
     if (employeeData.length === 0) {
@@ -172,9 +175,9 @@ function Home() {
   return (
     <div>
       <div className="landing-page">
-        <h1>Welcome to the Employee Dashboard</h1>
+        <h1 className={theme === "dark" ? "h1-dark" : null}>Welcome to the Employee Dashboard</h1>
         <div className="overview">
-          <h1>Overview</h1>
+          <h1 className={theme === "dark" ? "h1-dark" : null}>Overview</h1>
           <div className="key-metrics">
             <div className="metric">
               <span>Total Employees:</span> <span>{employeeData.length}</span>
@@ -203,7 +206,7 @@ function Home() {
           </div>
         </div>
         <div className="charts">
-          <h1>Organization DataPoints</h1>
+          <h1 className={theme === "dark" ? "h1-dark" : null}>Organization DataPoints</h1>
           <div className="chart-card">
             <h2 className="chart-title">Age Distribution</h2>
             <div className="chart">
@@ -230,7 +233,7 @@ function Home() {
           </div>
         </div>
         <div className="search-container">
-          <h1>Find Employees</h1>
+          <h1 className={theme === "dark" ? "h1-dark" : null}>Find Employees</h1>
           <div className="search-bar">
             <input
               type="text"

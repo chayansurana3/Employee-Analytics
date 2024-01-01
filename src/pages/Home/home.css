@@ -17,6 +17,10 @@ h1 {
     font-weight: bold;
 }
 
+.h1-dark{
+    color: white;
+}
+
 .key-metrics {
     display: flex;
     flex-wrap: wrap;

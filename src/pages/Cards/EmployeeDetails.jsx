@@ -108,7 +108,7 @@ function EmployeeDetails() {
 
   return (
     <div className="employee-cards-page">
-      <h1>Employee Details</h1>
+      <h1 className={theme === "dark" ? "h1-dark" : null}>Employee Details</h1>
       <div className="employee-cards-container">
         {employeeDataList.map((employeeData) => (
           <Card

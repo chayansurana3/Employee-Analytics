@@ -151,7 +151,7 @@ function Form() {
 
   return (
     <div className="form-container">
-      <h1>Employee Profile Form</h1>
+      <h1 className={theme === "dark" ? "h1-dark" : null}>Employee Profile Form</h1>
       <h4>Fields marked with asterisk(*) are compulsory</h4>
       <form onSubmit={handleSubmit}>
         <label className={theme === "dark" ? "label-dark" : "label-light"} htmlFor="empId">Employee ID*</label>
