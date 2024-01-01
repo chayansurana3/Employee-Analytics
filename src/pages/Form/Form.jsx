@@ -24,7 +24,7 @@ function Form() {
     document.title = "Handle Employee Data";
     console.log(empId);
     
-    let currTheme = localStorage.getItem("theme");
+    let currTheme = localStorage.getItem("theme") || "light";
     setTheme(currTheme);
 
     const fetchData = async () => {
@@ -54,7 +54,7 @@ function Form() {
     };
     
     fetchData();
-  }, [empId, localStorage.getItem("theme")]);
+  }, [empId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

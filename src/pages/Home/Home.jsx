@@ -10,9 +10,10 @@ function Home() {
 
   useEffect(() => {
     document.title = "Organization Analytics";
-    let currTheme = localStorage.getItem("theme");
+    
+    let currTheme = localStorage.getItem("theme") || "light";
     setTheme(currTheme);
-
+    
     const fetchData = async () => {
       try {
         const response = await fetch('/.netlify/functions/fetch');
@@ -27,7 +28,7 @@ function Home() {
       }
     };
     fetchData();
-  }, [localStorage.getItem("theme")]);
+  }, []);
 
   const averageSalary = () => {
     if (employeeData.length === 0) {

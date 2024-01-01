@@ -13,6 +13,10 @@
     border: white solid 2px;
 }
 
-.cards-dark{
+.employee-cards-container-dark {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: white solid 2px;
     color: black;
 }

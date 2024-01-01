@@ -9,7 +9,7 @@ function EmployeeList () {
 
     useEffect(() => {
         document.title = "Employee Lists";
-        let currTheme = localStorage.getItem("theme");
+        let currTheme = localStorage.getItem("theme") || "light";
         setTheme(currTheme);
 
         const fetchData = async () => {
@@ -27,7 +27,7 @@ function EmployeeList () {
         };
         fetchData();
 
-    }, [localStorage.getItem("theme")]);
+    }, []);
 
     const columns = React.useMemo(
         () => [

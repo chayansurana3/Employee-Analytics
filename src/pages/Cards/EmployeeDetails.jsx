@@ -84,9 +84,8 @@ function EmployeeDetails() {
 
   useEffect(() => {
     document.title = "Employee Details";
-    let currTheme = localStorage.getItem("theme");
+    let currTheme = localStorage.getItem("theme") || "light";
     setTheme(currTheme);
-    if (theme === 'dark') document.body.classList.add('cards-dark');
     
     const fetchData = async () => {
       try {
@@ -104,12 +103,12 @@ function EmployeeDetails() {
     };
 
     fetchData();
-  }, [localStorage.getItem("theme")]);
+  }, []);
 
   return (
     <div className="employee-cards-page">
       <h1 className={theme === "dark" ? "h1-dark" : null}>Employee Details</h1>
-      <div className="employee-cards-container">
+      <div className={theme === "light" ? "employee-cards-container" : "employee-cards-container-dark"}>
         {employeeDataList.map((employeeData) => (
           <Card
             key={employeeData.empId}
