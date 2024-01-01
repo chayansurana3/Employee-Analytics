@@ -28,6 +28,7 @@ Managing employee information is a critical aspect of organizational efficiency,
 - **Data Visualization:** The application incorporates charts for visualizing key employee data trends, providing insightful analytics.
 - **User-Friendly Forms:** Interactive and easy-to-use forms streamline data entry and editing processes for a smooth user experience.
 - **Informative Employee Cards:** Individual employee data is presented in visually appealing and informative cards for quick reference.
+- **Dark-Light Mode Theme:** The website also has the option of dark or light mode as per the user preference.
 
 Embark on this journey to create a powerful Employee Management System that not only simplifies administrative tasks but also enhances the overall efficiency of managing workforce information. Let's build a solution that transforms the way organizations handle employee data!
 
