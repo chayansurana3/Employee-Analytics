@@ -9,6 +9,29 @@ function EmployeeDetails() {
   const [deleting, setDeleting] = useState(false);
   const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    document.title = "Employee Details";
+    let currTheme = localStorage.getItem("theme") || "light";
+    setTheme(currTheme);
+    
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/.netlify/functions/fetch');
+        if (response.ok) {
+          const data = await response.json();
+          const sortedData = data.sort((a, b) => a.empId - b.empId);
+          setEmployeeDataList(sortedData);
+        } else {
+          console.error('Error fetching employee data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching employee data:', error.message);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   const editEmployeeData = (empId) => {
     Swal.fire({
@@ -81,30 +104,7 @@ function EmployeeDetails() {
       }
     });
   };
-
-  useEffect(() => {
-    document.title = "Employee Details";
-    let currTheme = localStorage.getItem("theme") || "light";
-    setTheme(currTheme);
-    
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/.netlify/functions/fetch');
-        if (response.ok) {
-          const data = await response.json();
-          const sortedData = data.sort((a, b) => a.empId - b.empId);
-          setEmployeeDataList(sortedData);
-        } else {
-          console.error('Error fetching employee data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching employee data:', error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  
   return (
     <div className="employee-cards-page">
       <h1 className={theme === "dark" ? "h1-dark" : null}>Employee Details</h1>

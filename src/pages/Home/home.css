@@ -11,7 +11,7 @@
 }
 
 h1 {
-    color: #006994;
+    color: #362FD9;
     text-align: center;
     font-size: 35px;
     font-weight: bold;
@@ -48,7 +48,7 @@ h1 {
 
 .metric span:last-child {
     display: block;
-    color: #006994;
+    color: #362FD9;
     font-size: 18px;
     font-weight: bold;
 }
@@ -131,7 +131,7 @@ td {
 }
 
 .chart-title {
-    color: #006994;
+    color: #362FD9;
     text-align: center;
 }
 
